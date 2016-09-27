@@ -11,7 +11,7 @@ do
 
     echo "<li><a href=\"../cgi-bin/hgTracks?db=$name&amp;position=lastDbPos\">$genome ($description)</a]</li>"
   fi
-done >> /var/www/inc/globalNavBar.tmp
+done | tac | sed 's/<li>/<li class="last">/q' | tac | sed 's/<li>/<li class="first">/q'  >> /var/www/inc/globalNavBar.tmp
 
 echo "<li class=\"last\"><a href=\"../cgi-bin/hgGateway\">Other</a></li>" >> /var/www/inc/globalNavBar.tmp
 echo "</ul></li>" >> /var/www/inc/globalNavBar.tmp
